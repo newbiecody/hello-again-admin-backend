@@ -1,0 +1,55 @@
+# Ignore Gradle build output
+/build/
+/.gradle/
+/out/
+
+# Ignore IntelliJ IDEA / Eclipse / VS Code project files
+.idea/
+*.iml
+*.ipr
+*.iws
+*.class
+/.vscode/
+/.project
+/.settings/
+/.metadata/
+/bin/
+/target/
+/*.war
+/*.jar
+
+# Ignore log files
+*.log
+*.tmp
+hs_err_pid*
+
+# Ignore dependency caches
+**/.gradle
+**/build
+!gradle/wrapper/gradle-wrapper.jar
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+*.swp
+
+# Ignore environment and security-sensitive files
+.env
+*.key
+*.pem
+*.p12
+/secrets/
+/config/application-*.yml
+/config/application-*.properties
+/src/main/resources/application-*.yml
+/src/main/resources/application-*.properties
+
+# Ignore test reports
+/test-results/
+/test-output/
+/surefire-reports/
+/jacoco/
+
+# Ignore generated files
+*.orig
+*.rej

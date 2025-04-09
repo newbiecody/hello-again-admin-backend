@@ -4,14 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Function;
 
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.hello_again_admin.model.Role;
@@ -20,14 +14,15 @@ import com.example.hello_again_admin.repository.UserRepository;
 
 @Service
 public class UserService {
+    
+    @Autowired
+    private UserRepository userRepository;
 
-    private final UserRepository userRepository;
+    // public UserService(UserRepository userRepository) {
+    // this.userRepository = userRepository;
+    // }
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public Iterable<User> getAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 

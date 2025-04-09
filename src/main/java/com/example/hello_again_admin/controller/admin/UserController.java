@@ -1,4 +1,4 @@
-package com.example.hello_again_admin.controller;
+package com.example.hello_again_admin.controller.admin;
 
 import com.example.hello_again_admin.model.User;
 import com.example.hello_again_admin.repository.UserRepository;

@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JwtUtils {
-    private SecretKey secretKey = Jwts.SIG.HS256.key().build();
+    private static SecretKey secretKey = Jwts.SIG.HS256.key().build();
 
-    public String generateToken(String subject) {
+    public static final String generateToken(String subject) {
         String jws = Jwts.builder()
                 .subject(subject)
                 .signWith(secretKey)
@@ -24,7 +24,7 @@ public class JwtUtils {
         return jws;
     }
 
-    private Claims extractAllClaims(String token) {
+    private static final Claims extractAllClaims(String token) {
         return Jwts.parser()
                 .verifyWith(secretKey)
                 .build()
@@ -32,21 +32,21 @@ public class JwtUtils {
                 .getPayload();
     }
 
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+    public static final <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
-    public String extractUsername(String token) {
+    public static final String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public boolean isTokenExpired(String token) {
+    public static final boolean isTokenExpired(String token) {
         return extractClaim(token, Claims::getExpiration).before(new Date());
     }
 
-    public boolean validateToken(String token, String username) {
-        return extractUsername(token).equals(username) && isTokenExpired(token);
+    public static final boolean validateToken(String token, String username) {
+        return extractUsername(token).equals(username) && !isTokenExpired(token);
     }
 
 }

@@ -15,6 +15,4 @@ public class Role {
     public String getName() {
         return name;
     }
-    
-    // Todo: getters, setters, constructors
 }
